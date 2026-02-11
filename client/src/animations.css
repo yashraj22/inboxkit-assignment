@@ -1,0 +1,43 @@
+@keyframes claim-pop {
+	0% {
+		transform: scale(0.5);
+		opacity: 0.3;
+	}
+
+	60% {
+		transform: scale(1.2);
+		opacity: 1;
+	}
+
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes shimmer {
+	to {
+		background-position: 200 center;
+	}
+}
+
+@keyframes fade-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+.animate-claim-pop {
+	animation: claim-pop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.animate-shimmer {
+	animation: shimmer 3s linear infinite;
+}
+
+.animate-fade-out {
+	animation: fade-out 1s ease-out forwards;
+}
