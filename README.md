@@ -27,7 +27,7 @@ A real-time collaborative tile-claiming game. Click tiles to claim them — comp
 
 ## Run Locally
 
-\```bash
+```bash
 
 # Prerequisites: Node.js 18+, Redis
 
@@ -46,7 +46,7 @@ redis-server --daemonize yes
 cd ..
 npm run dev
 
-\```
+```
 
 ## Tech Stack
 
