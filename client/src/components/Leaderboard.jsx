@@ -24,18 +24,20 @@ export default function Leaderboard({ currentUser, tiles }) {
             )}
             <ul className="space-y-0">{
                 leaders.map((leader, i) => {
-                    <li key={leader.userId} className={`flex items-center gap-2 py-1.5 text-xs border-b border-[#1a1a2e] last:border-b-0 ${leaders.userId === currentUser.id ? "text-yellow-300 font-bold" : ""}`}>
-                        <span className="text-gray-500 w-6 font-semibold">
-                            #{i + 1}
-                        </span >
-                        <span className="w-2.5 h-2.5 rounded-full shink-0" style={{ background: leader.color }}></span>
-                        <span className=" flex-1 truncate">
-                            {leader.username}
-                            {leader.userId === currentUser.id && "(you)"}
-                        </span>
-                        <span className="font-bold text-[#6c5CE7]">{leader.score}</span>
-                    </li>
+                    return (
+                        <li key={leader.userId} className={`flex items-center gap-2 py-1.5 text-xs border-b border-[#1a1a2e] last:border-b-0 ${leaders.userId === currentUser.id ? "text-yellow-300 font-bold" : ""}`}>
+                            <span className="text-gray-500 w-6 font-semibold">
+                                #{i + 1}
+                            </span >
+                            <span className="w-2.5 h-2.5 rounded-full shink-0" style={{ background: leader.color }}></span>
+                            <span className=" flex-1 truncate">
+                                {leader.username}
+                                {leader.userId === currentUser.id && "(you)"}
+                            </span>
+                            <span className="font-bold text-[#6c5CE7]">{leader.score}</span>
+                        </li>
 
+                    )
                 })
             }</ul >
         </div >

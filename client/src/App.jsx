@@ -22,8 +22,8 @@ function App() {
           >{user.username}</span>
         </div>
       </header >
-      <div className="flex gap-6 items-start">
-        <aside className="w-56 flex flex-col gap-54 shrink-0">
+      <div className="flex max-xl:flex-col gap-6 items-start max-xl:items-center">
+        <aside className="w-56 flex flex-col  gap-54 max-xl:gap-6 shrink-0">
           <UserPanel user={user} onlineCount={onlineCount} isConnected={isConnected} />
           <Leaderboard currentUser={user} tiles={tiles} />
         </aside>
