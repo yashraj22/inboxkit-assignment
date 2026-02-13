@@ -4,6 +4,9 @@ import { Server } from "socket.io";
 import cors from "cors";
 import { redis, connectRedis } from "./redis.js";
 import { getGrid, claimTile, getLeaderboard } from "./grid.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
