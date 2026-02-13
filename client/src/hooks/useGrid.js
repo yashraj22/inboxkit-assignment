@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-const SERVER_URL = process.env.VITE_SERVER_URL ?? "http://localhost:3001";
+const SERVER_URL = import.meta.env.VITE_SERVER_URL ?? "http://localhost:5173";
 
 export function useGrid(socketRef, user) {
 	const [tiles, setTiles] = useState({});

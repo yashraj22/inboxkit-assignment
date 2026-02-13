@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import { getORCreateUser } from "../utils/user";
 
-const SERVER_URL = process.env.VITE_SERVER_URL ?? "http://localhost:3001";
+const SERVER_URL = import.meta.env.VITE_SERVER_URL ?? "http://localhost:5173";
 
 export function useSocket() {
 	const socketRef = useRef(null);
