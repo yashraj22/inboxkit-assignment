@@ -34,9 +34,11 @@ export async function claimTile(x, y, user) {
 	if (existing) {
 		const parsed = JSON.parse(existing);
 		if (parsed.owner == user.id) {
-			return { success: false, reason: "Already yours" };
+			return { success: false, reason: "Already yours", tile: parsed, key };
 		}
-		await redis.zIncrBy(SCORES_KEY, -1, parsed.owner);
+
+		return { success: false, reason: "Already taken", tile: parsed, key };
+		// await redis.zIncrBy(SCORES_KEY, -1, parsed.owner);
 	}
 
 	await redis.hSet(GRID_KEY, key, JSON.stringify(tile));

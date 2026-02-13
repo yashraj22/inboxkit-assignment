@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
 
-const SERVER_URL = import.meta.env.VITE_SERVER_URL ?? "http://localhost:5173";
+const SERVER_URL = import.meta.env.VITE_SERVER_URL ?? "http://localhost:3001";
 
 export function useGrid(socketRef, user) {
 	const [tiles, setTiles] = useState({});
 	const [cooldown, setCooldown] = useState(false);
+	const [reason, setReason] = useState(null);
 
 	useEffect(() => {
 		const initilizeGrid = async () => {
@@ -28,7 +29,13 @@ export function useGrid(socketRef, user) {
 			setTiles((prev) => ({ ...prev, [key]: tile }));
 		};
 
-		const handleClaimRejected = ({ key }) => {};
+		const handleClaimRejected = ({ key, tile, reason }) => {
+			setTiles((prev) => ({ ...prev, [key]: tile }));
+			setReason(reason);
+			setTimeout(() => {
+				setReason(null);
+			}, 1000);
+		};
 
 		const handleGridReset = () => {
 			setTiles({});
@@ -71,5 +78,5 @@ export function useGrid(socketRef, user) {
 		[socketRef, user, cooldown],
 	);
 
-	return { tiles, claimTile, cooldown };
+	return { tiles, claimTile, cooldown, reason };
 }

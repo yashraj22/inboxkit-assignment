@@ -81,6 +81,7 @@ io.on("connection", (socket) => {
 			socket.emit("claim-rejected", {
 				key: `${x}:${y}`,
 				reason: result.reason,
+				tile: result.tile,
 			});
 		}
 	});

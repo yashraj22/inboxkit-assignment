@@ -6,7 +6,7 @@ import UserPanel from "./components/UserPanel";
 
 function App() {
   const { socket, isConnected, onlineCount, user } = useSocket();
-  const { tiles, claimTile } = useGrid(socket, user);
+  const { tiles, claimTile, reason } = useGrid(socket, user);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-5 bg-[#0f0f1a] text-gray-200 font-['inter', system-ui,sans-serif] overflow-hidden">
@@ -28,6 +28,7 @@ function App() {
           <Leaderboard currentUser={user} tiles={tiles} />
         </aside>
         <Grid tiles={tiles} onTileClick={claimTile} />
+        <span className="text-red-600"> {reason ? `Tile is ${reason}` : null}</span>
       </div>
     </div >
   )
