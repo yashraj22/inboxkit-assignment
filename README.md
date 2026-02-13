@@ -6,7 +6,7 @@ A real-time collaborative tile-claiming game. Click tiles to claim them — comp
 
 ## How It Works
 
-- **Frontend:** React (Vite) + Tailwind CSS renders a 30×30 grid of interactive tiles
+- **Frontend:** React (Vite) + Tailwind CSS renders a 20×20 grid of interactive tiles
 - **Backend:** Node.js + Express handles API requests and WebSocket connections
 - **Real-time:** Socket.IO broadcasts tile claims to all connected clients instantly
 - **Database:** Redis stores grid state (Hash) and leaderboard (Sorted Set)
@@ -39,7 +39,7 @@ cd ../client && npm install
 
 # Start Redis
 
-redis-server --daemonize yes
+redis-server --daemonize yes # for linux/macos
 
 # Run (from root)
 
