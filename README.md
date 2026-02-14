@@ -20,7 +20,7 @@ A real-time collaborative tile-claiming game. Click tiles to claim them — comp
 
 ## Trade-offs
 
-- **Last-writer-wins for conflicts:** Acceptable for a game. For financial apps, I'd use Redis transactions (WATCH/MULTI/EXEC)
+- **Arrival order matters for conflicts:** Playser who's request gets first to the server claims the tile and the other player sees it as already claimed, Acceptable for a game. For financial apps, I'd use Redis transactions (WATCH/MULTI/EXEC)
 - **Client-side leaderboard computation:** Simpler than a separate API call per update. Works fine at this scale
 - **localStorage for identity:** No auth system needed. Trade-off: users can reset their identity by clearing storage
 - **In-memory cooldown map:** Doesn't survive server restarts, but cooldowns are ephemeral anyway
