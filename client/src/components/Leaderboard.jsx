@@ -3,7 +3,7 @@ import { useMemo } from "react";
 export default function Leaderboard({ currentUser, tiles }) {
     const leaders = useMemo(() => {
         const scores = {};
-        if (Object.values(tiles)[0]) {
+        if (!Object.values(tiles)[0]) {
             return [];
         } else {
             for (const tile of Object.values(tiles)) {
