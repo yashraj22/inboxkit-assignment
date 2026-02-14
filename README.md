@@ -2,7 +2,7 @@
 
 A real-time collaborative tile-claiming game. Click tiles to claim them — compete with everyone online.
 
-**Live:** [deploying-soon]
+**Live:** https://inboxkit-assignment-gamma.vercel.app/
 
 ## How It Works
 
