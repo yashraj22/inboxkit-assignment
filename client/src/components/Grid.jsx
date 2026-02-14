@@ -10,7 +10,6 @@ export default function Grid({ tiles, onTileClick }) {
     const gridPixelSizeMobileClass = `w-${gridPixelSizeMobile} h-${gridPixelSizeMobile}`;
     const gapClass = `gap-${GAP}`
 
-    console.log(gridPixelSize, gridPixelSizeMobile)
 
     return (
         <div className={`rounded-xl p-3 shadow-[0_0_60px_rgba(108,92,231,0.1)]  overflow-auto max-h-[80vh] max-xl:max-h-[30vh] max-xl:max-w-[70vw] max-xl:min-h-[30vh] max-w-[90vw] bg-[radial-gradient(circle_at_20%_50%,rgba(108,92,231,0.03)_0%,transparent_50%), radial-gradient(circle_at_80%_50%,rgba(0,206,201,0.03)_0%,transparent_50%)]`}>

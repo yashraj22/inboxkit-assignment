@@ -34,7 +34,16 @@ export async function claimTile(x, y, user) {
 	if (existing) {
 		const parsed = JSON.parse(existing);
 		if (parsed.owner == user.id) {
-			return { success: false, reason: "Already yours", tile: parsed, key };
+			// remove the already claimed tile
+			await redis.hDel(GRID_KEY, key);
+			// decrease the user's score
+			await redis.zIncrBy(SCORES_KEY, -1, parsed.owner);
+			return {
+				success: true,
+				// reason: "Already yours, Unclaiming...",
+				key,
+				tile: null,
+			};
 		}
 
 		return { success: false, reason: "Already taken", tile: parsed, key };

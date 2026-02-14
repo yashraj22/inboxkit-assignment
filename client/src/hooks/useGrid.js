@@ -26,12 +26,20 @@ export function useGrid(socketRef, user) {
 		if (!socket) return;
 
 		const handleTileClaimed = ({ key, tile }) => {
-			setTiles((prev) => ({ ...prev, [key]: tile }));
+			if (tile) {
+				setTiles((prev) => ({ ...prev, [key]: tile }));
+			} else {
+				// remove the clicked tile
+				setTiles((prev) => {
+					const { [key]: _, ...rest } = prev;
+					return rest;
+				});
+			}
 		};
 
-		const handleClaimRejected = ({ key, tile, reason }) => {
-			setTiles((prev) => ({ ...prev, [key]: tile }));
+		const handleClaimRejected = ({ reason }) => {
 			setReason(reason);
+
 			setTimeout(() => {
 				setReason(null);
 			}, 1000);
@@ -60,22 +68,26 @@ export function useGrid(socketRef, user) {
 
 			const key = `${x}:${y}`;
 
-			setTiles((prev) => ({
-				...prev,
-				[key]: {
-					owner: user.id,
-					username: user.username,
-					color: user.color,
-					claimedAt: Date.now(),
-				},
-			}));
+			if (Object.keys(tiles).includes(key)) {
+				// no optimistic update when key is already present in tiles
+			} else {
+				setTiles((prev) => ({
+					...prev,
+					[key]: {
+						owner: user.id,
+						username: user.username,
+						color: user.color,
+						claimedAt: Date.now(),
+					},
+				}));
+			}
 
 			socket.emit("claim-tile", { x, y });
 
 			setCooldown(true);
 			setTimeout(() => setCooldown(false), 100);
 		},
-		[socketRef, user, cooldown],
+		[socketRef, user, cooldown, tiles],
 	);
 
 	return { tiles, claimTile, cooldown, reason };

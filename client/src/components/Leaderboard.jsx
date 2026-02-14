@@ -3,17 +3,22 @@ import { useMemo } from "react";
 export default function Leaderboard({ currentUser, tiles }) {
     const leaders = useMemo(() => {
         const scores = {};
-        for (const tile of Object.values(tiles)) {
-            scores[tile.owner] ??= {
-                username: tile.username,
-                color: tile.color,
-                score: 0,
+        if (Object.values(tiles)[0]) {
+            return [];
+        } else {
+            for (const tile of Object.values(tiles)) {
+                scores[tile.owner] ??= {
+                    username: tile.username,
+                    color: tile.color,
+                    score: 0,
+                }
+                scores[tile.owner].score++;
             }
-            scores[tile.owner].score++;
+
+            return Object.entries(scores).map(
+                ([id, data]) => ({ userId: id, ...data })
+            ).sort((a, b) => b.score - a.score).slice(0, 10);
         }
-        return Object.entries(scores).map(
-            ([id, data]) => ({ userId: id, ...data })
-        ).sort((a, b) => b.score - a.score).slice(0, 10);
     }, [tiles]);
 
     return (

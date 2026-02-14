@@ -27,8 +27,10 @@ function App() {
           <UserPanel user={user} onlineCount={onlineCount} isConnected={isConnected} />
           <Leaderboard currentUser={user} tiles={tiles} />
         </aside>
-        <Grid tiles={tiles} onTileClick={claimTile} />
-        <span className="text-red-600"> {reason ? `Tile is ${reason}` : null}</span>
+        <div className="flex flex-col items-center justify-center">
+          <Grid tiles={tiles} onTileClick={claimTile} />
+          <span className="text-red-600"> {reason ? `Tile is ${reason}` : null}</span>
+        </div>
       </div>
     </div >
   )
